@@ -31,7 +31,7 @@ ALTER TABLE property_data
 ALTER COLUMN saledate TYPE date
 USING saledate::date;
 
-/* filling out ull address based on parcel id, where parcelids are the same but the adreess is null for some reasono*/
+/* filling out all address based on parcel id, where parcelids are the same but the adreess is null for some reasono*/
 
 select a.parcelid, a.propertyaddress, b.parcelid, b.propertyaddress, 
 coalesce(a.propertyaddress, b.propertyaddress)
@@ -75,7 +75,7 @@ ALTER TABLE property_data
 DROP COLUMN propertyaddress
 
 
-/* sold as vacant fiedl has some y, n ,yes 7 no , lets standardaise this*/
+/* sold as vacant field has some y, n ,yes 7 no , lets standardaise this*/
 
 select distinct (soldasvacant), count(soldasvacant)
 from property_data
